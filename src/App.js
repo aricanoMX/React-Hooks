@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useContext } from 'react';
 
-function App() {
+import { Header } from './components/Header';
+import { Characters } from './components/Characters';
+import { ThemeContext } from './context/ThemeContext';
+
+export const App = () => {
+  const [theme, setTheme] = useState(false);
+  const { darkMode, lightMode } = useContext(ThemeContext);
+
+  const handleClick = () => {
+    setTheme(!theme);
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={`app ${theme ? darkMode : lightMode}`}>
+      <Header />
+      <div className='btn-align'>
+        <button className='btn-theme' type='button' onClick={handleClick}>
+          {theme ? <b>LightMode 🌞</b> : <b>DarkMode 🌑</b>}
+        </button>
+      </div>
+      <Characters />
     </div>
   );
-}
-
-export default App;
+};

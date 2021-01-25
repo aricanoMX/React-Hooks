@@ -1,12 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+
+import { App } from './App';
+import { ThemeContext } from './context/ThemeContext';
+import './index.css';
+
+const ThemeMode = {
+  darkMode: 'darkMode',
+  lightMode: 'lightMode',
+};
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <ThemeContext.Provider value={ThemeMode}>
+      <App />
+    </ThemeContext.Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
